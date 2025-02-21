@@ -1,33 +1,48 @@
 import { db, ref, push } from "./firebase.js";
 
-// Programm hinzufügen
+// Funktion zur Umwandlung eines OneDrive-Freigabelinks in einen direkten Download-Link
+function convertOneDriveLink(shareLink) {
+    let match = shareLink.match(/s![A-Za-z0-9_-]+/);
+    if (!match) {
+        console.error("❌ Ungültiger OneDrive-Link!");
+        alert("❌ Ungültiger OneDrive-Link! Bitte überprüfe den Link.");
+        return null;
+    }
+
+    let fileId = match[0]; // z.B. "s!AqA1sKER9JlfhYd-kNakXDDMmgbTMw"
+    return `https://api.onedrive.com/v1.0/shares/u!${fileId}/root/content`;
+}
+
 // Programm hinzufügen
 export function addProgramm() {
     const titel = document.getElementById("programm-titel").value;
     const beschreibung = document.getElementById("programm-beschreibung").value;
     let download = document.getElementById("programm-download").value;
 
-    // OneDrive-Link zu direktem Download-Link umwandeln
-    if (download.includes("onedrive.live.com")) {
-        download = download.replace("onedrive.live.com", "api.onedrive.com/rendition/thumbnail?url=onedrive.live.com")
-                            .concat("&action=download");
+    // OneDrive-Link umwandeln (falls nötig)
+    if (download.includes("onedrive.live.com") || download.includes("1drv.ms")) {
+        let convertedLink = convertOneDriveLink(download);
+        if (convertedLink) {
+            download = convertedLink;
+        } else {
+            return;
+        }
     }
 
     if (titel && beschreibung && download) {
         push(ref(db, "programme"), { titel, beschreibung, download })
             .then(() => {
                 console.log(`✅ Programm hinzugefügt: ${titel}`);
-                alert("Programm erfolgreich hinzugefügt!");
+                alert("✅ Programm erfolgreich hinzugefügt!");
             })
             .catch(error => {
                 console.error("❌ Fehler beim Hinzufügen eines Programms:", error);
-                alert("Fehler: " + error.message);
+                alert("❌ Fehler: " + error.message);
             });
     } else {
         alert("❌ Bitte alle Felder ausfüllen!");
     }
 }
-
 
 // Spiel hinzufügen
 export function addSpiel() {
@@ -35,21 +50,25 @@ export function addSpiel() {
     const beschreibung = document.getElementById("spiel-beschreibung").value;
     let download = document.getElementById("spiel-download").value;
 
-    // OneDrive-Link zu direktem Download-Link umwandeln
-    if (download.includes("onedrive.live.com")) {
-        download = download.replace("onedrive.live.com", "api.onedrive.com/rendition/thumbnail?url=onedrive.live.com")
-                            .concat("&action=download");
+    // OneDrive-Link umwandeln (falls nötig)
+    if (download.includes("onedrive.live.com") || download.includes("1drv.ms")) {
+        let convertedLink = convertOneDriveLink(download);
+        if (convertedLink) {
+            download = convertedLink;
+        } else {
+            return;
+        }
     }
 
     if (titel && beschreibung && download) {
         push(ref(db, "spiele"), { titel, beschreibung, download })
             .then(() => {
                 console.log(`✅ Spiel hinzugefügt: ${titel}`);
-                alert("Spiel erfolgreich hinzugefügt!");
+                alert("✅ Spiel erfolgreich hinzugefügt!");
             })
             .catch(error => {
                 console.error("❌ Fehler beim Hinzufügen eines Spiels:", error);
-                alert("Fehler: " + error.message);
+                alert("❌ Fehler: " + error.message);
             });
     } else {
         alert("❌ Bitte alle Felder ausfüllen!");
@@ -68,11 +87,11 @@ export function addVideo() {
         push(ref(db, "videos"), { titel, url })
             .then(() => {
                 console.log(`✅ Video hinzugefügt: ${titel}`);
-                alert("Video erfolgreich hinzugefügt!");
+                alert("✅ Video erfolgreich hinzugefügt!");
             })
             .catch(error => {
                 console.error("❌ Fehler beim Hinzufügen eines Videos:", error);
-                alert("Fehler: " + error.message);
+                alert("❌ Fehler: " + error.message);
             });
     } else {
         alert("❌ Bitte alle Felder ausfüllen!");
@@ -83,5 +102,3 @@ export function addVideo() {
 document.getElementById("addVideoButton").addEventListener("click", addVideo);
 document.getElementById("addProgrammButton").addEventListener("click", addProgramm);
 document.getElementById("addSpielButton").addEventListener("click", addSpiel);
-
-
