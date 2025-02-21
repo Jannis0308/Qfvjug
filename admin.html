@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Qfvjug</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="/firebase.js"></script>
+    <script type="module" src="admin.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="fade-in">Admin-Bereich</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link">Start</a></li>
+                <li><a href="programme.html" class="nav-link">Programme</a></li>
+                <li><a href="spiele.html" class="nav-link">Spiele</a></li>
+                <li><a href="videos.html" class="nav-link">Videos</a></li>
+                <li><a href="einstellungen.html" class="nav-link">Einstellungen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="admin-container fade-in">
+            <h2>Programm hinzufügen</h2>
+            <input type="text" id="programm-titel" placeholder="Titel">
+            <textarea id="programm-beschreibung" placeholder="Beschreibung"></textarea>
+            <input type="text" id="programm-download" placeholder="Download-Link">
+            <button id="addProgrammButton">Hinzufügen</button>
+
+            <h2>Spiel hinzufügen</h2>
+            <input type="text" id="spiel-titel" placeholder="Titel">
+            <textarea id="spiel-beschreibung" placeholder="Beschreibung"></textarea>
+            <input type="text" id="spiel-download" placeholder="Download-Link">
+            <button id="addSpielButton">Hinzufügen</button>
+
+            <h2>Video hinzufügen</h2>
+            <input type="text" id="video-titel" placeholder="Titel">
+            <input type="text" id="video-url" placeholder="YouTube-URL">
+            <button id="addVideoButton">Hinzufügen</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Qfvjug - Alle Rechte vorbehalten</p>
+    </footer>
+</body>
+</html>

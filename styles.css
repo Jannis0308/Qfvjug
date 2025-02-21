@@ -1,0 +1,233 @@
+/* Allgemeine Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    color: #333;
+    text-align: center;
+}
+
+/* Header & Navigation */
+header {
+    background: linear-gradient(90deg, #ff8c00, #ff4500);
+    padding: 15px 0;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Animierte Sektionen */
+.hero {
+    margin: 50px auto;
+    padding: 50px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #ff4500;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* Animationen */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideIn 1s forwards;
+}
+
+/* Keyframes für Animationen */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Programme-Container */
+#programme-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Einzelne Programme */
+.programm-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.programm-item:last-child {
+    border-bottom: none;
+}
+/* Spiele-Container */
+#spiele-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Einzelne Spiele */
+.spiel-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.spiel-item:last-child {
+    border-bottom: none;
+}
+/* Video-Container */
+#videos-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Einzelne Videos */
+.video-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.video-item:last-child {
+    border-bottom: none;
+}
+
+/* YouTube-Embed */
+.video-item iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+}
+/* Admin-Container */
+.admin-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Eingabefelder & Buttons */
+.admin-container input,
+.admin-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.admin-container button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.admin-container button:hover {
+    background: #0056b3;
+}
+/* Dark Mode */
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+.dark-mode a {
+    color: #90caf9;
+}
+
+/* Einstellungen-Container */
+.settings-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dark-mode .settings-container {
+    background: #333;
+}
+
+/* Eingabefelder & Buttons */
+.settings-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.settings-container button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.settings-container button:hover {
+    background: #0056b3;
+}
+

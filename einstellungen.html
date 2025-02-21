@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstellungen - Qfvjug</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="einstellungen.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="fade-in">Einstellungen</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link">Start</a></li>
+                <li><a href="programme.html" class="nav-link">Programme</a></li>
+                <li><a href="spiele.html" class="nav-link">Spiele</a></li>
+                <li><a href="videos.html" class="nav-link">Videos</a></li>
+                <li><a href="einstellungen.html" class="nav-link">Einstellungen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="settings-container fade-in">
+            <h2>Dark-/White-Mode</h2>
+            <button id="toggle-theme">Dark Mode aktivieren</button>
+
+            <h2>Admin-Login</h2>
+            <input type="text" id="username" placeholder="Benutzername">
+            <input type="password" id="password" placeholder="Passwort">
+            <button onclick="login()">Einloggen</button>
+
+            <p id="login-status"></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Qfvjug - Alle Rechte vorbehalten</p>
+    </footer>
+</body>
+</html>
