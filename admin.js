@@ -73,7 +73,6 @@ export function addSpiel() {
     } else {
         alert("❌ Bitte alle Felder ausfüllen!");
     }
-}
 
 // Video hinzufügen
 export function addVideo() {
