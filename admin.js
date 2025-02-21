@@ -1,43 +1,34 @@
 import { db, ref, push } from "./firebase.js";
 
-// Funktion zur Umwandlung eines OneDrive-Freigabelinks in einen direkten Download-Link
-function convertOneDriveLink(shareLink) {
-    let match = shareLink.match(/s![A-Za-z0-9_-]+/);
-    if (!match) {
-        console.error("❌ Ungültiger OneDrive-Link!");
-        alert("❌ Ungültiger OneDrive-Link! Bitte überprüfe den Link.");
-        return null;
+function convertOneDriveLink(onedriveUrl) {
+    if (onedriveUrl.includes("1drv.ms")) {
+        // OneDrive-Sharing-Link in Base64 encodieren
+        let base64Code = btoa(onedriveUrl).replace(/=/g, "").replace(/\//g, "_").replace(/\+/g, "-");
+        return `https://api.onedrive.com/v1.0/shares/u!${base64Code}/root/content`;
     }
-
-    let fileId = match[0]; // z.B. "s!AqA1sKER9JlfhYd-kNakXDDMmgbTMw"
-    return `https://api.onedrive.com/v1.0/shares/u!${fileId}/root/content`;
+    return onedriveUrl; // Falls kein OneDrive-Link, bleibt er unverändert
 }
 
+
+// Programm hinzufügen
 // Programm hinzufügen
 export function addProgramm() {
     const titel = document.getElementById("programm-titel").value;
     const beschreibung = document.getElementById("programm-beschreibung").value;
     let download = document.getElementById("programm-download").value;
 
-    // OneDrive-Link umwandeln (falls nötig)
-    if (download.includes("onedrive.live.com") || download.includes("1drv.ms")) {
-        let convertedLink = convertOneDriveLink(download);
-        if (convertedLink) {
-            download = convertedLink;
-        } else {
-            return;
-        }
-    }
+    // OneDrive-Link in direkten Download-Link umwandeln
+    download = convertOneDriveLink(download);
 
     if (titel && beschreibung && download) {
         push(ref(db, "programme"), { titel, beschreibung, download })
             .then(() => {
                 console.log(`✅ Programm hinzugefügt: ${titel}`);
-                alert("✅ Programm erfolgreich hinzugefügt!");
+                alert("Programm erfolgreich hinzugefügt!");
             })
             .catch(error => {
                 console.error("❌ Fehler beim Hinzufügen eines Programms:", error);
-                alert("❌ Fehler: " + error.message);
+                alert("Fehler: " + error.message);
             });
     } else {
         alert("❌ Bitte alle Felder ausfüllen!");
@@ -50,15 +41,24 @@ export function addSpiel() {
     const beschreibung = document.getElementById("spiel-beschreibung").value;
     let download = document.getElementById("spiel-download").value;
 
-    // OneDrive-Link umwandeln (falls nötig)
-    if (download.includes("onedrive.live.com") || download.includes("1drv.ms")) {
-        let convertedLink = convertOneDriveLink(download);
-        if (convertedLink) {
-            download = convertedLink;
-        } else {
-            return;
-        }
+    // OneDrive-Link in direkten Download-Link umwandeln
+    download = convertOneDriveLink(download);
+
+    if (titel && beschreibung && download) {
+        push(ref(db, "spiele"), { titel, beschreibung, download })
+            .then(() => {
+                console.log(`✅ Spiel hinzugefügt: ${titel}`);
+                alert("Spiel erfolgreich hinzugefügt!");
+            })
+            .catch(error => {
+                console.error("❌ Fehler beim Hinzufügen eines Spiels:", error);
+                alert("Fehler: " + error.message);
+            });
+    } else {
+        alert("❌ Bitte alle Felder ausfüllen!");
     }
+}
+
 
     if (titel && beschreibung && download) {
         push(ref(db, "spiele"), { titel, beschreibung, download })
